@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+</head>
+<body>
+    <h2>Login Success</h2>
+    <p>Login Form submitted successfully!</p>
+    
+    <p>
+        {% if error_message %}
+            <strong style="color: red;">{{ error_message }}</strong>
+            <br>
+            Please <a href="/loginTemplate">go back to the Login form</a>
+        {% else %}
+            {% if username %}
+                <p>Hello, Welcome {{ username }}!</p>
+                <a href="/multipleForms"> multiple Forms</a>
+            {% else %}
+                <p>Welcome! It seems the username was not found in the session. Please log in again.</p>
+            {% endif %}
+        {% endif %}
+    </p>
+</body>
+</html>

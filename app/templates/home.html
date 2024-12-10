@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome, User {{ user_id }}</h1>
+    <a href="{% url 'logout' %}">Logout</a>
+
+    <script>
+        function checkToken() {
+            fetch("{% url 'validate_token' %}")
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.valid) {
+                        // Redirect to login if token is invalid
+                        //window.location.href = "{% url 'logout' %}";
+                        window.location.href = "{% url 'login_new' %}";
+                    }
+                })
+                .catch(error => {
+                    console.error("Error checking token:", error);
+                    // Optionally handle errors, e.g., network issues
+                });
+        }
+    
+        // Check token validity every 5 seconds
+        setInterval(checkToken, 5000);
+    </script>
+
+</body>
+</html>
